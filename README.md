@@ -1,42 +1,40 @@
 # Alify
 
-Reproductor musical **100 % local**, gratuito, accesible y ultraligero para Windows. Sin servidores, anuncios, telemetría ni estadísticas. 20 temas (`design.md`), modo MIX con crossfade, True Shuffle, letras `.lrc` y ventana flotante.
+Alify es un reproductor gratuito para Windows de 64 bits. Elige una carpeta de música de tu equipo, organiza tus listas y reproduce tus archivos desde la biblioteca o desde una ventana flotante.
 
-## Instalación (una línea, sin administrador)
+## Descargar e instalar
 
-> Reemplaza `TU_USUARIO/alify` por el repositorio real.
+**[Descargar Alify-Setup.exe](https://github.com/VerVo-Lab/Alify/releases/latest/download/Alify-Setup.exe)** · [Ver las versiones publicadas](https://github.com/VerVo-Lab/Alify/releases)
 
-**PowerShell**
+El enlace de descarga corresponde al instalador de la última versión publicada en GitHub Releases.
+
+1. Abre **Alify-Setup.exe** y sigue los pasos del asistente. La instalación se realiza para tu usuario de Windows.
+2. El asistente comprueba si tienes **Microsoft Edge WebView2**, el componente que Alify usa para mostrar su interfaz. Si falta, necesita conexión a Internet para descargarlo e instalarlo.
+3. En la última pantalla, deja marcada la opción de **crear el acceso directo del escritorio** y pulsa **Finalizar**. El icono **Alify** abre el ejecutable instalado. También puedes abrirlo desde Inicio.
+
+El instalador ya incluye la aplicación compilada. Para desinstalarla, busca **Alify** en **Configuración → Aplicaciones → Aplicaciones instaladas** de Windows.
+
+## Escuchar música
+
+- **Biblioteca.** Abre **Configuración → Elegir carpeta de música** y selecciona la carpeta que contiene tus canciones. Alify lee los archivos y sus etiquetas para mostrar títulos, artistas y portadas.
+- **Reproducción.** Elige una pista o una lista. La barra inferior permite pausar, cambiar de canción, activar el orden aleatorio, ajustar el volumen y consultar la cola. La barra espaciadora alterna entre reproducción y pausa.
+- **Letras.** Abre **Letras** en la barra del reproductor. Las letras con marcas de tiempo LRC siguen la posición del audio. Para afinar el comienzo, la app busca una posible entrada de voz cerca de la primera marca. La precisión depende de la grabación y de sus marcas de tiempo.
+- **Temas y minirreproductor.** Aplica un diseño en **Temas y diseños**. Desde la barra de reproducción puedes abrir el flotante, arrastrar sus bordes para cambiar el tamaño o acoplarlo arriba. **Expandir** recupera su posición y tamaño anteriores.
+- **Wrapped.** Consulta tu tiempo de escucha y tus canciones más reproducidas. Puedes guardar el resumen como PNG con la ilustración del tema activo.
+
+La reproducción de archivos locales funciona sin conexión. Las funciones opcionales de búsqueda en servicios externos requieren Internet. La biblioteca y las preferencias se guardan en el perfil del usuario.
+
+## Compilar el instalador desde el código
+
+En Windows x64 instala Node.js 20 o posterior con npm, Rust con el toolchain MSVC, Visual Studio Build Tools con la carga **Desarrollo para el escritorio con C++** y WebView2. Desde la raíz del repositorio ejecuta:
+
 ```powershell
-irm https://raw.githubusercontent.com/VerVo-Lab/Alify/main/scripts/install.ps1 | iex
-```
-
-**CMD**
-```cmd
-powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/VerVo-Lab/Alify/main/scripts/install.ps1 | iex"
-```
-
-El script descarga el último release en `%LOCALAPPDATA%\Alify`, crea accesos directos (Escritorio y Menú Inicio), agrega `alify` al `PATH` del usuario y abre la app. Para otro repositorio: `$env:ALIFY_REPO="usuario/repo"` antes del comando.
-
-También puedes bajar `Alify-Setup.exe` (instalador por usuario) o `Alify-Portable.exe` desde *Releases*.
-
-## Datos del usuario
-Todo se guarda en `%LOCALAPPDATA%\Alify` (playlists, favoritos, temas personalizados y caché de WebView2 en `Alify\webview`). No se escribe fuera de tu perfil.
-
-## Desarrollo
-Requisitos: Node 20+, Rust (MSVC), **Visual Studio Build Tools con "Desktop development with C++"** y WebView2.
-```
-npm install
-npm run typecheck
-npm run tauri dev
+npm ci
 npm run tauri build
 ```
 
-## Publicar un release
-```
-git tag v1.0.0 && git push origin v1.0.0
-```
-GitHub Actions (`.github/workflows/release-windows.yml`) compila y publica `Alify-Setup.exe` y `Alify-Portable.exe`.
+El ejecutable se genera en `src-tauri/target/release/alify.exe`. El instalador queda en `src-tauri/target/release/bundle/nsis/` con un nombre que incluye la versión y termina en `-setup.exe`. Para trabajar en la interfaz y probar cambios en vivo, usa `npm run tauri dev`.
 
-## Fase 2: Android
-`src/utils/platform.ts` detecta la plataforma y marca `<html data-os data-form>`. En móvil la sidebar pasa a barra inferior táctil y la ventana flotante se reemplaza por un Mini-Player arrastrable dentro de la app. Siguiente paso: `npm run tauri android init` (requiere Android SDK/NDK).
+## Publicar una versión en GitHub
+
+Al subir una etiqueta `v*` al repositorio, [el flujo de publicación](.github/workflows/release-windows.yml) compila en Windows y adjunta **Alify-Setup.exe**, **Alify-Portable.exe** y **SHA256SUMS.txt** a la versión de GitHub. El nombre estable del instalador mantiene el enlace de descarga de este README.
