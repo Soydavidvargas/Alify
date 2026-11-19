@@ -579,8 +579,13 @@ pub async fn enrich_wanted_track(
 }
 
 // ---------- puente local yt-dlp para resolver pistas faltantes ----------
+#[cfg(target_arch = "x86")]
+const YT_DLP_EXE: &str = "yt-dlp_x86.exe";
+#[cfg(not(target_arch = "x86"))]
+const YT_DLP_EXE: &str = "yt-dlp.exe";
+
 fn find_yt_dlp() -> Option<PathBuf> {
-    let local = bin_dir().join("yt-dlp.exe");
+    let local = bin_dir().join(YT_DLP_EXE);
     if local.is_file() {
         return Some(local);
     }
@@ -596,10 +601,10 @@ fn find_yt_dlp() -> Option<PathBuf> {
 }
 
 fn download_yt_dlp_sync() -> Result<PathBuf, String> {
-    let dest = bin_dir().join("yt-dlp.exe");
-    let tmp = bin_dir().join("yt-dlp.exe.tmp");
+    let dest = bin_dir().join(YT_DLP_EXE);
+    let tmp = dest.with_extension("exe.tmp");
     let resp = agent()
-        .get("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe")
+        .get(&format!("https://github.com/yt-dlp/yt-dlp/releases/latest/download/{YT_DLP_EXE}"))
         .call()
         .map_err(|e| format!("No se pudo descargar yt-dlp: {e}"))?;
     let mut out = fs::File::create(&tmp).map_err(|e| e.to_string())?;

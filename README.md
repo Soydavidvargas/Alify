@@ -8,11 +8,13 @@
 
 <p align="center">
   <a href="https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup.exe?raw=true"><strong>⬇️ Descargar para Windows x64 · 7,3 MB</strong></a>
+  <br>
+  <a href="https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup-x86.exe?raw=true"><strong>⬇️ Descargar para Windows de 32 bits (x86) · 7,1 MB</strong></a>
 </p>
 
 ## 🖥️ Instala Alify
 
-1. Abre **Alify-Setup.exe** y sigue el asistente.
+1. Abre el instalador que descargaste y sigue el asistente.
 2. Deja marcada la opción **Crear acceso directo en el escritorio** y pulsa **Finalizar**.
 3. Abre **Alify** desde el escritorio o el menú Inicio.
 
