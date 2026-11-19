@@ -4,9 +4,9 @@ Alify es un reproductor gratuito para Windows de 64 bits. Elige una carpeta de m
 
 ## Descargar e instalar
 
-**[Descargar Alify-Setup.exe](https://github.com/VerVo-Lab/Alify/releases/latest/download/Alify-Setup.exe)** · [Ver las versiones publicadas](https://github.com/VerVo-Lab/Alify/releases)
+**[Descargar Alify-Setup.exe](https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup.exe?raw=true)** · [Ver las versiones publicadas](https://github.com/VerVo-Lab/Alify/releases)
 
-El enlace de descarga corresponde al instalador de la última versión publicada en GitHub Releases.
+El instalador está disponible en el repositorio. Si GitHub te pide iniciar sesión, usa una cuenta con acceso a Alify.
 
 1. Abre **Alify-Setup.exe** y sigue los pasos del asistente. La instalación se realiza para tu usuario de Windows.
 2. El asistente comprueba si tienes **Microsoft Edge WebView2**, el componente que Alify usa para mostrar su interfaz. Si falta, necesita conexión a Internet para descargarlo e instalarlo.
@@ -37,4 +37,4 @@ El ejecutable se genera en `src-tauri/target/release/alify.exe`. El instalador q
 
 ## Publicar una versión en GitHub
 
-Al subir una etiqueta `v*` al repositorio, [el flujo de publicación](.github/workflows/release-windows.yml) compila en Windows y adjunta **Alify-Setup.exe**, **Alify-Portable.exe** y **SHA256SUMS.txt** a la versión de GitHub. El nombre estable del instalador mantiene el enlace de descarga de este README.
+Al subir una etiqueta `v*` al repositorio, [el flujo de publicación](.github/workflows/release-windows.yml) compila en Windows y adjunta **Alify-Setup.exe**, **Alify-Portable.exe** y **SHA256SUMS.txt** a la versión de GitHub. Al actualizar la descarga de este README, reemplaza también `downloads/Alify-Setup.exe` con el instalador de la versión correspondiente.
