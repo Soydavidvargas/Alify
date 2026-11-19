@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 150" width="410" height="150">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6fdff"/>
+      <stop offset="0.5" stop-color="#6fdcf0"/>
+      <stop offset="0.52" stop-color="#2bb5d6"/>
+      <stop offset="1" stop-color="#7be0a5"/>
+    </linearGradient>
+    <radialGradient id="bub" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="0.6" stop-color="#9eeaff" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#2bb5d6" stop-opacity="0.8"/>
+    </radialGradient>
+  </defs>
+  <rect x="14" y="18" width="382" height="114" rx="57" fill="url(#body)" stroke="#ffffff" stroke-width="3"/>
+  <ellipse cx="205" cy="42" rx="170" ry="20" fill="#ffffff" opacity="0.5"/>
+  <circle cx="30" cy="30" r="18" fill="url(#bub)" stroke="#fff" stroke-width="2"/>
+  <circle cx="378" cy="120" r="22" fill="url(#bub)" stroke="#fff" stroke-width="2"/>
+  <circle cx="392" cy="38" r="9" fill="url(#bub)" stroke="#fff" stroke-width="1.5"/>
+  <circle cx="14" cy="112" r="10" fill="url(#bub)" stroke="#fff" stroke-width="1.5"/>
+  <circle cx="205" cy="140" r="7" fill="url(#bub)" stroke="#fff" stroke-width="1.5"/>
+</svg>

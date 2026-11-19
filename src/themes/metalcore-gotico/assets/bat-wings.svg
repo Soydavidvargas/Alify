@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" width="480" height="230">
+  <defs>
+    <linearGradient id="m" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b2b31"/>
+      <stop offset="0.5" stop-color="#0c0c0f"/>
+      <stop offset="1" stop-color="#050506"/>
+    </linearGradient>
+  </defs>
+  <!-- ala izquierda -->
+  <path id="w" d="M240 24 L262 44 L300 34 L350 14 L412 30 L470 36 L440 62 L458 92 L424 100 L436 132 L398 130 L396 168 L360 150 L344 190 L312 160 L290 206 L262 176 L240 214 Z" fill="url(#m)" stroke="#aab0b8" stroke-width="3" stroke-linejoin="miter"/>
+  <path d="M240 24 L218 44 L180 34 L130 14 L68 30 L10 36 L40 62 L22 92 L56 100 L44 132 L82 130 L84 168 L120 150 L136 190 L168 160 L190 206 L218 176 L240 214 Z" fill="url(#m)" stroke="#aab0b8" stroke-width="3" stroke-linejoin="miter"/>
+  <!-- costillas de las alas -->
+  <g stroke="#7a0a13" stroke-width="2" fill="none">
+    <path d="M300 60 L440 40 M300 80 L436 98 M300 100 L398 130"/>
+    <path d="M180 60 L40 40 M180 80 L44 98 M180 100 L82 130"/>
+  </g>
+  <!-- orejas / púas centrales -->
+  <path d="M200 30 L190 4 L222 24 Z M280 30 L290 4 L258 24 Z" fill="#0c0c0f" stroke="#aab0b8" stroke-width="2"/>
+  <path d="M228 214 L240 226 L252 214" fill="none" stroke="#c1121f" stroke-width="3"/>
+</svg>

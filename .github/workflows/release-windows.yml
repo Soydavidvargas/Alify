@@ -1,0 +1,51 @@
+name: Release Windows
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar (instalador NSIS + exe)
+        run: npm run tauri build
+
+      - name: Preparar artefactos
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist-release | Out-Null
+          $setup = Get-ChildItem src-tauri/target/release/bundle/nsis/*-setup.exe | Select-Object -First 1
+          Copy-Item $setup.FullName dist-release/Alify-Setup.exe
+          Copy-Item src-tauri/target/release/alify.exe dist-release/Alify-Portable.exe
+          Get-ChildItem dist-release | ForEach-Object { "{0}  {1:N1} MB" -f $_.Name, ($_.Length / 1MB) }
+          Get-FileHash dist-release/*.exe -Algorithm SHA256 | ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } | Set-Content dist-release/SHA256SUMS.txt
+
+      - name: Publicar en GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist-release/Alify-Setup.exe
+            dist-release/Alify-Portable.exe
+            dist-release/SHA256SUMS.txt
+          generate_release_notes: true
