@@ -50,7 +50,7 @@ jobs:
         run: |
           xcodebuild \
             -project src-tauri/gen/apple/Alify.xcodeproj \
-            -scheme Alify \
+            -scheme alify \
             -configuration Debug \
             -sdk iphonesimulator \
             -destination 'generic/platform=iOS Simulator' \
