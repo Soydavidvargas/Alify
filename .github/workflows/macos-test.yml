@@ -1,0 +1,21 @@
+
+name: Alify - macOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  macos:
+    name: Ejecutar macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Descargar Alify
+        uses: actions/checkout@v4
+
+      - name: Verificar macOS
+        run: |
+          sw_vers
+          uname -m
+          xcodebuild -version
+          echo "Alify: macOS funcionando correctamente"
