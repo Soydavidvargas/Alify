@@ -13,18 +13,19 @@
 
 ## 📱 Descargar para Android
 
-[⬇️ Alify para Android · APK 0.1.13](https://github.com/VerVo-Lab/Alify/raw/refs/heads/main/downloads/Alify-Android-0.1.13.apk)
+[⬇️ Alify para Android · APK 0.1.14](./downloads/Alify-Android-0.1.14.apk?raw=true)
 
 ## 📱 Alify para Android
 
-Abre [Alify para Android 0.1.13](https://github.com/VerVo-Lab/Alify/raw/refs/heads/main/downloads/Alify-Android-0.1.13.apk) y pulsa **Instalar**. El APK requiere Android 7.0 o posterior (API 24), un dispositivo ARM de 32 o 64 bits o x86-64 y espacio para el APK de aproximadamente 61 MB, la aplicación instalada y tu música. Para encontrar tus audios, concede el permiso de música y audio. Internet es necesario para migraciones y búsquedas de portada o letra.
+Abre [Alify para Android 0.1.14](./downloads/Alify-Android-0.1.14.apk?raw=true) y pulsa **Instalar**. El APK requiere Android 7.0 o posterior (API 24), un dispositivo ARM de 32 o 64 bits o x86-64 y espacio para el APK de aproximadamente 61 MB, la aplicación instalada y tu música. Para encontrar tus audios, concede el permiso de música y audio. Internet es necesario para migraciones y búsquedas de portada o letra.
 
 🔐 **Privacidad y seguridad.** Tu música, tus preferencias y tus estadísticas de escucha se guardan en el dispositivo. Al usar migraciones o búsquedas en Internet, Alify se conecta a los servicios necesarios para obtener música, portadas y letras. El código está disponible en este repositorio para su revisión.
 
 Android puede mostrar una advertencia al instalar un APK fuera de Google Play. Windows SmartScreen también puede advertir sobre un instalador de un editor no reconocido. Estas advertencias dependen de la firma y la reputación del archivo. Descarga Alify desde este repositorio y verifica el archivo antes de instalarlo. El APK se firma con una clave local de desarrollo y no cuenta con una certificación independiente de ausencia de malware.
 
-**SHA-256 del APK 0.1.13**  
-`AC18E28AD59AC36B06B5933C1F00CEA080B268256ACBC94ADD4F5DE525244F19`
+**SHA-256 del APK 0.1.14**
+
+`D8ED331FEAD9FBD1D140F5D102E5EB21E14C9562E29AE9F164FA587308C58E74`
 
 - **Audios del dispositivo.** Al abrir Alify, concede el permiso de música y audio. En **Playlist** verás los archivos que Android ha indexado en el almacenamiento compartido y en las tarjetas montadas. Pulsa **Volver a buscar** después de copiar música nueva.
 - **Mi biblioteca.** Toca el corazón de una canción para guardarla. El interruptor de la playlist te permite incluir todos los audios encontrados en la **Reproducción global**. Empieza desactivado.
