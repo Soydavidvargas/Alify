@@ -4,102 +4,150 @@ name: Alify - Compilar iOS
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-ios:
     name: Compilar Alify para iOS
     runs-on: macos-latest
+    timeout-minutes: 60
 
     defaults:
       run:
         working-directory: Alify-iOS
+        shell: bash
+
+    env:
+      CI: "true"
+      CARGO_TERM_COLOR: always
+      CARGO_INCREMENTAL: "0"
 
     steps:
-      - name: Descargar proyecto
+
+      # 1. Descargar el repositorio
+      - name: Descargar proyecto Alify
         uses: actions/checkout@v4
 
+      # 2. Configurar Node.js
       - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
           cache-dependency-path: Alify-iOS/package-lock.json
 
+      # 3. Configurar Rust para iOS
       - name: Instalar Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: aarch64-apple-ios-sim
 
+      # 4. Instalar XcodeGen
       - name: Instalar XcodeGen
-        run: brew install xcodegen
+        run: |
+          brew install xcodegen
+          xcodegen --version
 
-      - name: Instalar dependencias
+      # 5. Verificar macOS y Xcode
+      - name: Verificar entorno macOS
+        run: |
+          sw_vers
+          xcodebuild -version
+          rustc --version
+          cargo --version
+          node --version
+          npm --version
+
+      # 6. Instalar dependencias
+      - name: Instalar dependencias de Alify
         run: npm ci
 
-      - name: Comprobar frontend
+      # 7. Comprobar interfaz iOS
+      - name: Compilar interfaz React
         run: npm run build:ios-ui
 
+      # 8. Preparar proyecto Tauri iOS
       - name: Preparar proyecto iOS
         run: npm run ios:prepare
 
-  
+      # 9. Comprobar proyecto Xcode
       - name: Verificar proyecto Xcode
         run: |
           echo "=== Proyectos Xcode ==="
-          find src-tauri/gen/apple -name "*.xcodeproj"
+
+          find src-tauri/gen/apple \
+            -name "*.xcodeproj" -print
 
           echo "=== Esquemas disponibles ==="
+
           xcodebuild -list \
             -project src-tauri/gen/apple/Alify.xcodeproj
 
           echo "=== Archivos de esquemas ==="
+
           find src-tauri/gen/apple \
             -name "*.xcscheme" -print
 
-      - name: Compilar para simulador
+      # 10. Compilar Rust + Xcode con Tauri
+      - name: Compilar Alify iOS con Tauri
         run: |
-          xcodebuild \
-            -project src-tauri/gen/apple/Alify.xcodeproj \
-            -scheme alify_iOS \
-            -configuration Debug \
-            -sdk iphonesimulator \
-            -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath build-ios \
-            CODE_SIGNING_ALLOWED=NO \
-            build
-      - name: Comprobar esquemas de compilacion
+          npm run tauri -- ios build \
+            --target aarch64-sim \
+            --debug \
+            --ci
+
+      # 11. Localizar archivos compilados
+      - name: Buscar aplicacion iOS
         run: |
-          python3 - <<'PY'
-          import json
-          import subprocess
+          echo "=== Aplicaciones generadas ==="
 
-          project = "src-tauri/gen/apple/Alify.xcodeproj"
+          find src-tauri \
+            -type d -name "*.app" -print
 
-          result = subprocess.run(
-              ["xcodebuild", "-list", "-json",
-               "-project", project],
-              capture_output=True,
-              text=True,
-              check=True
-          )
+          echo "=== Archivos IPA ==="
 
-          data = json.loads(result.stdout)
-          schemes = data.get("project", {}).get("schemes", [])
+          find src-tauri \
+            -type f -name "*.ipa" -print
 
-          print("Esquemas encontrados:", schemes)
+          echo "=== Directorios de compilacion ==="
 
-          if not schemes:
-              print("No existen esquemas compartidos.")
-              print("Hay que revisar la generacion de Xcode.")
-          else:
-              print("Esquemas disponibles para compilar:")
-              for scheme in schemes:
-                  print(" -", scheme)
-          PY
+          find src-tauri/gen/apple \
+            -type d -name "Build" -print
 
-      - name: Guardar resultado
-        if: success()
+      # 12. Preparar artefactos
+      - name: Preparar resultado
+        run: |
+          mkdir -p ios-artifacts
+
+          find src-tauri \
+            -type d -name "*.app" \
+            -not -path "*/Pods/*" \
+            -exec cp -R {} ios-artifacts/ \;
+
+          find src-tauri \
+            -type f -name "*.ipa" \
+            -exec cp {} ios-artifacts/ \;
+
+          if [ -z "$(ls -A ios-artifacts)" ]; then
+            echo "No se encontraron aplicaciones compiladas."
+            exit 1
+          fi
+
+      # 13. Subir archivos a GitHub
+      - name: Guardar Alify iOS
         uses: actions/upload-artifact@v4
         with:
           name: Alify-iOS-Simulator
-          path: Alify-iOS/build-ios/Build/Products/Debug-iphonesimulator/
+          path: Alify-iOS/ios-artifacts/
           if-no-files-found: error
+          retention-days: 7
+
+      # 14. Confirmar resultado
+      - name: Compilacion terminada
+        run: |
+          echo "================================"
+          echo "ALIFY iOS"
+          echo "Compilacion finalizada"
+          echo "Revisa los artefactos en GitHub"
+          echo "================================"
