@@ -1,0 +1,67 @@
+
+name: Alify - Compilar iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    name: Compilar Alify para iOS
+    runs-on: macos-latest
+
+    defaults:
+      run:
+        working-directory: Alify-iOS
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Alify-iOS/package-lock.json
+
+      - name: Instalar Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios-sim
+
+      - name: Instalar XcodeGen
+        run: brew install xcodegen
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Comprobar frontend
+        run: npm run build:ios-ui
+
+      - name: Preparar proyecto iOS
+        run: npm run ios:prepare
+
+      - name: Verificar proyecto Xcode
+        run: |
+          xcodebuild -list \
+            -project src-tauri/gen/apple/Alify.xcodeproj
+
+      - name: Compilar para simulador
+        run: |
+          xcodebuild \
+            -project src-tauri/gen/apple/Alify.xcodeproj \
+            -scheme Alify \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build-ios \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Guardar resultado
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Alify-iOS-Simulator
+          path: Alify-iOS/build-ios/Build/Products/Debug-iphonesimulator/
+          if-no-files-found: error
