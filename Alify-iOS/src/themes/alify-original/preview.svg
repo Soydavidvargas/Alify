@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150">
+  <rect width="320" height="150" fill="#27272a"/>
+  <rect x="19" y="12" width="282" height="126" rx="9" fill="#101012" stroke="#52525b"/>
+  <text x="32" y="31" fill="#fafafa" font-family="Segoe UI,sans-serif" font-size="10" letter-spacing="2">ALIFY</text>
+  <g fill="#222225"><rect x="28" y="39" width="66" height="64" rx="5"/><rect x="99" y="39" width="192" height="64" rx="5"/></g>
+  <path d="M37 52h40m-40 12h31m-31 12h36" stroke="#9ca3af" stroke-width="3"/>
+  <text x="109" y="56" fill="#fafafa" font-family="Segoe UI,sans-serif" font-size="10">Biblioteca</text>
+  <path d="M110 68h115m-115 10h87m-87 10h102" stroke="#71717a" stroke-width="3"/>
+  <path d="M29 109h262" stroke="#3f3f46"/><circle cx="160" cy="123" r="10" fill="#fafafa"/><path d="M157 118l8 5-8 5z" fill="#101012"/>
+</svg>

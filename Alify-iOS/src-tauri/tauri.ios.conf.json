@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0",
+  "build": {
+    "beforeDevCommand": "npm run dev -- --mode ios",
+    "beforeBuildCommand": "npm run build:ios-ui",
+    "frontendDist": "../dist-ios"
+  },
+  "app": {
+    "windows": [{ "label": "main", "title": "Alify", "url": "mobile.html" }],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' ipc: http://ipc.localhost; font-src 'self' data:",
+      "assetProtocol": { "enable": false, "scope": [] }
+    }
+  },
+  "bundle": { "targets": "all", "iOS": { "minimumSystemVersion": "17.0", "bundleVersion": "1" } }
+}

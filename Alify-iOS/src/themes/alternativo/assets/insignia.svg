@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 29 94 94" color="#f5c27f">
+ <defs><pattern id="stock" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.6" fill="currentColor"/><circle cx="9" cy="9" r="1" fill="currentColor"/></pattern><pattern id="mesh" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#b5aa99"/></pattern></defs>
+ <path d="M17 11H382Q393 11 393 24V133Q393 145 381 145H18Q6 145 6 133V24Q6 11 17 11Z" fill="#8a715b" stroke="#19171a" stroke-width="5"/>
+ <path d="M17 11H382Q393 11 393 24V133Q393 145 381 145H18Q6 145 6 133V24Q6 11 17 11Z" fill="url(#stock)" fill-opacity=".23" stroke="#f5c27f" stroke-width="1"/>
+ <rect x="20" y="48" width="86" height="54" rx="5" fill="#181619" stroke="currentColor"/><g fill="#ead9b8" stroke="#554942" stroke-width="4"><circle cx="42" cy="74" r="13"/><circle cx="84" cy="74" r="13"/></g><path d="M37 74h10m32 0h10" stroke="#29212b" stroke-width="4"/><path d="M30 119l6-11h55l6 11z" fill="#211c1d"/>
+ <g transform="translate(22 32)"><circle r="3" fill="#b7b1a1" stroke="#332e29"/><path d="M-1.5 1.5l3-3" stroke="#312b27"/></g><g transform="translate(377 32)"><circle r="3" fill="#b7b1a1" stroke="#332e29"/><path d="M-1.5 1.5l3-3" stroke="#312b27"/></g><g transform="translate(22 125)"><circle r="3" fill="#b7b1a1" stroke="#332e29"/><path d="M-1.5 1.5l3-3" stroke="#312b27"/></g><g transform="translate(377 125)"><circle r="3" fill="#b7b1a1" stroke="#332e29"/><path d="M-1.5 1.5l3-3" stroke="#312b27"/></g>
+ </svg>

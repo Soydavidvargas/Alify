@@ -1,0 +1,55 @@
+.instrument-stage { container-type: inline-size; width:100%; aspect-ratio:400/156; }
+.instrument-stage.live { height:100%; }
+.instrument { width:100%;height:100%;position:relative;background-size:100% 100%;background-repeat:no-repeat;color:var(--ink); }
+.instrument-cover {position:absolute;left:9%;top:32%;width:14%;height:36%;border-radius:50%;object-fit:cover;border:1px solid var(--trim)}
+.instrument-display {position:absolute;left:29%;top:31%;width:53%;height:32%;display:flex;justify-content:center;flex-direction:column;background:linear-gradient(160deg,#ffffff16,transparent 65%),#14151b;border:1px solid var(--secondary);border-radius:1.6cqw;box-shadow:inset 0 2px 6px #000a;padding:0 9% 0 3%;color:white}
+.instrument-display strong,.instrument-display small {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.25}
+.instrument-display strong {font-size:3.6cqw}.instrument-display small {font-size:2.7cqw;color:#dadbe0}
+.instrument-tools,.instrument-transport {position:absolute;display:flex;align-items:center;gap:1cqw}
+.instrument-tools {right:18%;top:12%}.instrument-transport {left:29%;top:69%}
+.instrument-tools > *, .instrument-transport > * {display:grid;place-items:center;line-height:1;border:1px solid var(--secondary);background:linear-gradient(#ffffff26,#0004),#272930;color:white;border-radius:1.5cqw;box-shadow:0 1px 2px #0009}
+.instrument-tools > * {width:6cqw;height:5.6cqw;font:600 2.2cqw system-ui}.instrument-tools > :first-child {width:9cqw}
+.instrument-transport > * {width:9cqw;height:7cqw;border-radius:4cqw}.instrument-transport > :nth-child(3) {width:13cqw;background:var(--trim);color:#14151b}
+.instrument svg {width:52%;height:65%}.instrument button { -webkit-app-region: no-drag; cursor: pointer; }.instrument button:active {transform:translateY(1px)}
+.instrument-progress {position:absolute;left:30%;width:51%;top:65%;height:1.5%;background:#101015;border-radius:8px;overflow:hidden}.instrument-progress i {display:block;height:100%;background:var(--trim)}
+.instrument-meter {position:absolute;right:4%;bottom:20%;display:flex;align-items:end;gap:.55cqw;height:55%}
+.instrument-meter i {width:.8cqw;height:30%;background:linear-gradient(var(--secondary),var(--trim));transform-origin:bottom}
+.instrument-meter i:nth-child(2n){height:80%;animation-delay:-.4s}.instrument-meter i:nth-child(3){height:100%;animation-delay:-.2s}
+@media(prefers-reduced-motion:no-preference){.instrument-meter[data-playing=true] i {animation-name:instrument-pulse;animation-duration:.7s;animation-direction:alternate;animation-iteration-count:infinite}@keyframes instrument-pulse {to{transform:scaleY(.35)}}}
+.instrument-display {background:var(--screen,#14151b);color:var(--phosphor,#fff);border-radius:var(--device-radius,1.6cqw)}
+.instrument-display small {color:inherit}
+.instrument-transport > *, .instrument-tools > * {border-radius:var(--device-radius,1.5cqw)}
+.instrument button[aria-pressed=true],.fl-controls button[aria-pressed=true] {outline:2px solid currentColor;outline-offset:-4px;background:var(--trim,var(--c-accent));color:#121419}
+.instrument button:focus-visible {outline:2px solid white;outline-offset:1px;box-shadow:0 0 0 4px #111}
+
+/* Distribución de controles sobre una carcasa con cruceta. */
+.instrument[data-layout=handheld] .instrument-transport {inset:0;pointer-events:none}
+.instrument[data-layout=handheld] .instrument-transport > * {position:absolute;pointer-events:auto;transform:translate(-50%,-50%);border-radius:50%}
+.instrument[data-layout=handheld] .instrument-transport > :nth-child(2),
+.instrument[data-layout=handheld] .instrument-transport > :nth-child(4) {top:48%;width:6.5%;height:16%;background:#282932;color:white;border:1px solid #17171b;border-radius:2px}
+.instrument[data-layout=handheld] .instrument-transport > :nth-child(2) {left:9.5%}
+.instrument[data-layout=handheld] .instrument-transport > :nth-child(4) {left:20%}
+.instrument[data-layout=handheld] .instrument-transport > :nth-child(3) {top:56%;left:87.5%;width:7.5%;height:19%;background:#8d2543;color:white}
+.instrument[data-layout=handheld] .instrument-transport > :last-child {top:41%;left:94%;width:6.5%;height:17%;background:#69233c;color:white}
+.instrument[data-layout=handheld] .instrument-transport > :first-child {top:81%;left:52%;height:14%;width:11%;border-radius:12px}
+.instrument[data-layout=handheld] .instrument-cover {left:29.7%;top:35%;width:8.5%;height:22%;z-index:1;border-radius:0}
+.instrument[data-layout=handheld]:has(.instrument-cover) .instrument-display {padding-left:10%}
+.instrument[data-compact=true] .instrument-tools {top:13%;right:14%}
+.instrument[data-compact=true] .instrument-tools > button {width:10cqw;height:8cqw;border-radius:50%}
+.instrument[data-compact=true] .instrument-transport {left:34%;top:68%}
+.instrument[data-compact=true] .instrument-transport > button {width:13cqw;height:9cqw}
+.instrument[data-compact=true] .instrument-transport > button:nth-child(2) {background:var(--trim);color:#17191e}
+.instrument[data-compact=true] .instrument-display strong {font-size:4.3cqw}
+.instrument[data-compact=true] .instrument-display small {font-size:3.4cqw}
+.instrument[data-has-shell=false] {background:var(--c-float-bg,var(--c-bg));border:1px solid var(--c-line);border-radius:var(--v-radius)}
+.instrument-app-icon {position:absolute;left:10%;top:33%;width:12%;height:33%;object-fit:contain;filter:drop-shadow(0 2px 3px #000b)}
+.float-error,.compact-stage [role=alert] {position:fixed;bottom:0;left:0;background:#222;color:white;font-size:11px}
+.resize-edge {position:fixed;z-index:10;touch-action:none}
+.resize-edge[data-edge=North],.resize-edge[data-edge=South] {left:7px;right:7px;height:5px;cursor:ns-resize}
+.resize-edge[data-edge=West],.resize-edge[data-edge=East] {top:7px;bottom:7px;width:5px;cursor:ew-resize}
+.resize-edge[data-edge*=North] {top:0}.resize-edge[data-edge*=South] {bottom:0}
+.resize-edge[data-edge*=West] {left:0}.resize-edge[data-edge*=East] {right:0}
+.resize-edge[data-edge=NorthWest],.resize-edge[data-edge=SouthEast] {width:9px;height:9px;cursor:nwse-resize}
+.resize-edge[data-edge=NorthEast],.resize-edge[data-edge=SouthWest] {width:9px;height:9px;cursor:nesw-resize}
+.instrument-stage.live {display:grid;place-items:center;container-type:size}
+.instrument-stage.live > .instrument {width:min(100cqw,256.41cqh);height:auto;aspect-ratio:400/156;container-type:inline-size}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 156" color="#ff87c1">
+ <defs><pattern id="stock" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0h6v6H0z M6 6h6v6H6z" fill="currentColor"/></pattern><pattern id="mesh" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#b5aa99"/></pattern></defs>
+ <path d="M7 20L42 12L75 16L103 7L153 14L212 6L260 11L318 5L391 15L387 44L395 67L390 92L396 137L350 145L317 139L277 148L230 143L168 151L129 143L83 149L43 140L9 146L14 108L5 87L11 53Z" fill="#382a36" stroke="#19171a" stroke-width="5"/>
+ <path d="M7 20L42 12L75 16L103 7L153 14L212 6L260 11L318 5L391 15L387 44L395 67L390 92L396 137L350 145L317 139L277 148L230 143L168 151L129 143L83 149L43 140L9 146L14 108L5 87L11 53Z" fill="url(#stock)" fill-opacity=".23" stroke="#ff87c1" stroke-width="1"/>
+ <path d="M61 114L29 81Q10 54 32 46Q49 39 60 57Q79 34 96 49Q109 65 95 82Z" fill="currentColor" stroke="#171018" stroke-width="4"/><path d="M66 53L55 71l14 2-16 22 M43 79l9-7m0 17 8-7" fill="none" stroke="#331e2e" stroke-width="3"/>
+ 
+ </svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 430" width="300" height="430" shape-rendering="crispEdges">
+  <!-- carcasa: esquina inferior derecha curva -->
+  <path d="M8 0 H292 V340 Q292 428 204 428 H8 Z" fill="#c4c2c0"/>
+  <rect x="0" y="8" width="300" height="400" fill="#c4c2c0"/>
+  <path d="M8 4 H292 V338 Q292 424 204 424 H8 Z" fill="none" stroke="#7d7b79" stroke-width="4"/>
+  <rect x="4" y="4" width="292" height="414" fill="none" stroke="#e8e6e4" stroke-width="2"/>
+  <!-- bisel de pantalla -->
+  <rect x="24" y="30" width="252" height="190" fill="#5a5f8c"/>
+  <rect x="30" y="36" width="240" height="178" fill="#3f4268"/>
+  <text x="150" y="232" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="14" fill="#2b2b6b">ALIFY <tspan fill="#a8123c">C</tspan><tspan fill="#8bac0f">O</tspan><tspan fill="#3b5bdb">L</tspan><tspan fill="#e0b000">O</tspan><tspan fill="#a8123c">R</tspan></text>
+  <!-- altavoz -->
+  <g stroke="#7d7b79" stroke-width="4"><path d="M214 392 L248 358 M232 396 L262 366 M196 392 L226 362"/></g>
+  <!-- start/select -->
+  <rect x="90" y="382" width="34" height="8" rx="4" fill="#8b8987"/>
+  <rect x="134" y="382" width="34" height="8" rx="4" fill="#8b8987"/>
+</svg>
