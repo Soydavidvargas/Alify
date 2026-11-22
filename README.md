@@ -6,13 +6,14 @@
 
 <p align="center">Tu colección de música en un reproductor gratuito para Windows y Android.</p>
 
-<p align="center">
-  <a href="https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup.exe?raw=true"><strong>⬇️ Descargar para Windows x64 · 7,3 MB</strong></a>
-  <br>
-  <a href="https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup-x86.exe?raw=true"><strong>⬇️ Descargar para Windows de 32 bits (x86) · 7,1 MB</strong></a>
-  <br>
-  <a href="https://github.com/VerVo-Lab/Alify/raw/refs/heads/main/downloads/Alify-Android-0.1.13.apk"><strong>📱 Descargar Alify para Android · APK 0.1.13</strong></a>
-</p>
+## 🖥️ Descargar para Windows
+
+- [⬇️ Windows de 64 bits (x64) · 7,3 MB](https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup.exe?raw=true)
+- [⬇️ Windows de 32 bits (x86) · 7,1 MB](https://github.com/VerVo-Lab/Alify/blob/main/downloads/Alify-Setup-x86.exe?raw=true)
+
+## 📱 Descargar para Android
+
+[⬇️ Alify para Android · APK 0.1.13](https://github.com/VerVo-Lab/Alify/raw/refs/heads/main/downloads/Alify-Android-0.1.13.apk)
 
 ## 📱 Alify para Android
 
