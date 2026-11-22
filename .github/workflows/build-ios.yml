@@ -57,7 +57,15 @@ jobs:
 
       - name: Compilar para simulador
         run: |
-
+          xcodebuild \
+            -project src-tauri/gen/apple/Alify.xcodeproj \
+            -scheme alify_iOS \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build-ios \
+            CODE_SIGNING_ALLOWED=NO \
+            build
       - name: Comprobar esquemas de compilacion
         run: |
           python3 - <<'PY'
@@ -87,7 +95,6 @@ jobs:
               for scheme in schemes:
                   print(" -", scheme)
           PY
-
 
       - name: Guardar resultado
         if: success()
