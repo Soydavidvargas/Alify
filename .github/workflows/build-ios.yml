@@ -41,22 +41,53 @@ jobs:
       - name: Preparar proyecto iOS
         run: npm run ios:prepare
 
+  
       - name: Verificar proyecto Xcode
         run: |
+          echo "=== Proyectos Xcode ==="
+          find src-tauri/gen/apple -name "*.xcodeproj"
+
+          echo "=== Esquemas disponibles ==="
           xcodebuild -list \
             -project src-tauri/gen/apple/Alify.xcodeproj
 
+          echo "=== Archivos de esquemas ==="
+          find src-tauri/gen/apple \
+            -name "*.xcscheme" -print
+
       - name: Compilar para simulador
         run: |
-          xcodebuild \
-            -project src-tauri/gen/apple/Alify.xcodeproj \
-            -scheme alify \
-            -configuration Debug \
-            -sdk iphonesimulator \
-            -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath build-ios \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+
+      - name: Comprobar esquemas de compilacion
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+
+          project = "src-tauri/gen/apple/Alify.xcodeproj"
+
+          result = subprocess.run(
+              ["xcodebuild", "-list", "-json",
+               "-project", project],
+              capture_output=True,
+              text=True,
+              check=True
+          )
+
+          data = json.loads(result.stdout)
+          schemes = data.get("project", {}).get("schemes", [])
+
+          print("Esquemas encontrados:", schemes)
+
+          if not schemes:
+              print("No existen esquemas compartidos.")
+              print("Hay que revisar la generacion de Xcode.")
+          else:
+              print("Esquemas disponibles para compilar:")
+              for scheme in schemes:
+                  print(" -", scheme)
+          PY
+
 
       - name: Guardar resultado
         if: success()
